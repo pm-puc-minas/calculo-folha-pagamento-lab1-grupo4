@@ -1,7 +1,7 @@
 import { Building2, User, Lock } from "lucide-react"
 import './Auth.css'
 
-function Login() {
+function Register() {
   return (
     <div className="pagina-login">
       <div className="container-login">
@@ -23,7 +23,22 @@ function Login() {
           </div>
 
           <div className="formulario-card">
-  
+            <div className="campo-card">
+              <label htmlFor="matricula" className="rotulo-card">
+                Nome completo
+              </label>
+              <div className="campo-input">
+                <User className="icone-input" />
+                <input
+                  id="Nome completo"
+                  type="text"
+                  placeholder="Digite seu nome completo"
+                  className="input-card"
+                />
+              </div>
+            </div>
+
+
             <div className="campo-card">
               <label htmlFor="matricula" className="rotulo-card">
                 Matrícula
@@ -53,6 +68,20 @@ function Login() {
                 />
               </div>
             </div>
+            <div className="campo-card">
+              <label htmlFor="senha" className="rotulo-card">
+                Confirmar Senha
+              </label>
+              <div className="campo-input">
+                <Lock className="icone-input" />
+                <input
+                  id="senha"
+                  type="password"
+                  placeholder="Digite sua senha"
+                  className="input-card"
+                />
+              </div>
+            </div>
 
             <button type="button" className="botao-card">
               Entrar
@@ -60,7 +89,7 @@ function Login() {
           </div>
 
           <div className="cadastro-card">
-            <p className="texto-cadastro">Ainda não possui cadastro? <strong><a href="/register">cadastrar</a></strong></p>
+            <p className="texto-cadastro">Já possui uma conta? <strong><a href="/login">Logar</a></strong></p>
           </div>
         </div>
       </div>
@@ -68,4 +97,4 @@ function Login() {
   )
 }
 
-export default Login
+export default Register

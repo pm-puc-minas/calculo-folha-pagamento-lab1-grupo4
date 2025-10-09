@@ -1,0 +1,163 @@
+:root {
+  --fonte-principal: "GeistSans", "GeistSans Fallback", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.pagina-login {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: linear-gradient(to bottom right, #ebf4ff, #e0e7ff);
+  font-family: var(--fonte-principal);
+}
+
+.container-login {
+  width: 100%;
+  max-width: 420px;
+}
+
+.cabecalho-login {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.logo-login {
+  width: 64px;
+  height: 64px;
+  background-color: #2563eb;
+  border-radius: 50%;
+  margin: 0 auto 1rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icone-logo {
+  width: 32px;
+  height: 32px;
+  color: white;
+}
+
+.titulo-login {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.subtitulo-login {
+  color: #4b5563;
+}
+
+.card-login {
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  width: 100%;
+}
+
+.cabecalho-card {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.titulo-card {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.descricao-card {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.formulario-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.campo-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  width: 100%;
+}
+
+.rotulo-card {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.campo-input {
+  position: relative;
+  width: 100%;
+}
+
+.icone-input {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: #9ca3af;
+  pointer-events: none;
+}
+
+.input-card {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.75rem 0.5rem 2.25rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+}
+
+.input-card:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 1px #2563eb;
+}
+
+.botao-card {
+  width: 100%;
+  background-color: #2563eb;
+  color: white;
+  font-weight: 500;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border: none;
+}
+
+.botao-card:hover {
+  background-color: #1e40af;
+}
+
+.cadastro-card {
+  background-color: #f9fafb;
+  padding: 1rem;
+  margin-top: 1.5rem;
+  border-radius: 0.5rem;
+}
+
+.texto-cadastro {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #374151;
+}
+
+.texto-cadastro a {
+  color: #2563eb;
+  text-decoration: none;
+}
