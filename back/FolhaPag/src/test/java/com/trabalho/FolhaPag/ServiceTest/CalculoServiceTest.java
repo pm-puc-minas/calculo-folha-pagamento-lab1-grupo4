@@ -1,5 +1,9 @@
-package com.trabalho.olhaPag.Service;
+package com.trabalho.FolhaPag.ServiceTest;
 
+import com.trabalho.FolhaPag.Service.CalculoFGTSService;
+import com.trabalho.FolhaPag.Service.CalculoINSSService;
+import com.trabalho.FolhaPag.Service.CalculoIRRFService;
+import com.trabalho.FolhaPag.Service.CalculoService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
