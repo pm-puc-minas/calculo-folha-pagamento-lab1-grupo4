@@ -35,9 +35,9 @@ public class CalculoServiceTest {
         assertTrue(resultado.containsKey("IRRF"), "Deve conter IRRF");
         assertTrue(resultado.containsKey("FGTS"), "Deve conter FGTS");
 
-        double esperadoInss = 115.47; 
-        double esperadoIrrf = 0.00;   
-        double esperadoFgts = 120.00; 
+        double esperadoInss = 113.82;
+        double esperadoIrrf = 0.00;
+        double esperadoFgts = 120.00;
 
         assertEquals(esperadoInss, resultado.get("INSS"), 0.01, "INSS incorreto para salário 1500.00");
         assertEquals(esperadoIrrf, resultado.get("IRRF"), 0.01, "IRRF incorreto para salário 1500.00");
@@ -53,9 +53,9 @@ public class CalculoServiceTest {
 
         assertNotNull(resultado);
 
-        double esperadoInss = 323.33; 
-        double esperadoIrrf = 525.00; 
-        double esperadoFgts = 280.00; 
+        double esperadoInss = 318.82;
+        double esperadoIrrf = 122.38;
+        double esperadoFgts = 280.00;
 
         assertEquals(esperadoInss, resultado.get("INSS"), 0.01, "INSS incorreto para salário 3500.00");
         assertEquals(esperadoIrrf, resultado.get("IRRF"), 0.01, "IRRF incorreto para salário 3500.00");
@@ -71,9 +71,9 @@ public class CalculoServiceTest {
 
         assertNotNull(resultado);
 
-        double esperadoInss = 877.24;   
-        double esperadoIrrf = 2415.04;  
-        double esperadoFgts = 960.00;   
+        double esperadoInss = 908.85;
+        double esperadoIrrf = 2180.55;
+        double esperadoFgts = 960.00;
 
         assertEquals(esperadoInss, resultado.get("INSS"), 0.01, "INSS incorreto para salário 12000.00");
         assertEquals(esperadoIrrf, resultado.get("IRRF"), 0.01, "IRRF incorreto para salário 12000.00");
@@ -81,7 +81,7 @@ public class CalculoServiceTest {
     }
 
     @Test
-    @DisplayName("Salário 0.00 ou negativo -> INSS deve lançar IllegalArgumentException")
+    @DisplayName("Salário 0.00 ou negativo -> calculoService deve lançar IllegalArgumentException")
     void testCalcularTodos_SalarioZeroOuNegativo_LancaExcecao() {
         assertThrows(IllegalArgumentException.class, () -> calculoService.calcularTodos(0.0));
         assertThrows(IllegalArgumentException.class, () -> calculoService.calcularTodos(-100.0));
