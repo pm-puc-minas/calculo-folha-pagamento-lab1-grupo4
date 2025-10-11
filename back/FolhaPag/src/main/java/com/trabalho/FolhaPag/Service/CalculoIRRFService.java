@@ -15,6 +15,8 @@ public class CalculoIRRFService implements ICalculo {
             deducao = 0;
         } else if (salario <= 2826.65) {
             aliquota = 0.075;
+            //a dedução é salario * aliquota
+            //colocar a aliquota como valorem em um enum
             deducao = 158.40;
         } else if (salario <= 3751.05) {
             aliquota = 0.15;
