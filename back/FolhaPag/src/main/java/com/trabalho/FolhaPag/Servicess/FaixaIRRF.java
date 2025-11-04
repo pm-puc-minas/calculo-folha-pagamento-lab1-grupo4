@@ -1,4 +1,4 @@
-package com.trabalho.FolhaPag.Service;
+package com.trabalho.FolhaPag.Servicess;
 
 public enum FaixaIRRF {
     FAIXA_1(1903.98, 0.0, 0.0),

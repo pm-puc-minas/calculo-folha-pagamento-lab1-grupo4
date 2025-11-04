@@ -1,4 +1,4 @@
-package com.trabalho.FolhaPag.Service;
+package com.trabalho.FolhaPag.Servicess;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
