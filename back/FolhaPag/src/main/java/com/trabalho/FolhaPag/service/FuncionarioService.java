@@ -20,7 +20,7 @@ public class FuncionarioService {
 
     public Funcionario criar(FuncionarioDTO dto) {
         Funcionario funcionario = converterParaEntidade(dto);
-        calcularTributos(funcionario);
+        calcularDescontos(funcionario);
         return repository.save(funcionario);
     }
 
@@ -40,7 +40,7 @@ public class FuncionarioService {
                 .build();
     }
 
-    private void calcularTributos(Funcionario f) {
+    private void calcularDescontos(Funcionario f) {
         double inss = f.getSalarioBruto() * 0.075;
         double fgts = f.getSalarioBruto() * 0.08;
         double irrf = f.getSalarioBruto() > 2500 ? f.getSalarioBruto() * 0.15 : 0;
