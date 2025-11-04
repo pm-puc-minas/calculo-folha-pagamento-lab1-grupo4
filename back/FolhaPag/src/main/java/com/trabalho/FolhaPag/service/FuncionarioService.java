@@ -1,9 +1,10 @@
 package com.trabalho.FolhaPag.service;
 
-import com.trabalho.FolhaPag.entity.Funcionario;
-import com.trabalho.FolhaPag.repository.FuncionarioRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import lombok.RequiredArgsConstructor;
+import com.trabalho.FolhaPag.entity.Funcionario;
+import com.trabalho.FolhaPag.dto.FuncionarioDTO;
+import com.trabalho.FolhaPag.repository.FuncionarioRepository;
 
 import java.util.List;
 
@@ -17,15 +18,37 @@ public class FuncionarioService {
         return repository.findAll();
     }
 
-    public Funcionario buscarPorId(Long id) {
-        return repository.findById(id).orElse(null);
-    }
-
-    public Funcionario salvar(Funcionario funcionario) {
+    public Funcionario criar(FuncionarioDTO dto) {
+        Funcionario funcionario = converterParaEntidade(dto);
+        calcularTributos(funcionario);
         return repository.save(funcionario);
     }
 
-    public void deletar(Long id) {
-        repository.deleteById(id);
+    private Funcionario converterParaEntidade(FuncionarioDTO dto) {
+        return Funcionario.builder()
+                .nome(dto.getNome())
+                .cpf(dto.getCpf())
+                .cargo(dto.getCargo())
+                .departamento(dto.getDepartamento())
+                .salarioBruto(dto.getSalarioBruto())
+                .dataAdmissao(dto.getDataAdmissao())
+                .horasPrevistas(dto.getHorasPrevistas())
+                .horasTrabalhadas(dto.getHorasTrabalhadas())
+                .valeTransporte(dto.getValeTransporte())
+                .numeroDependentes(dto.getNumeroDependentes())
+                .ativo(true)
+                .build();
+    }
+
+    private void calcularTributos(Funcionario f) {
+        double inss = f.getSalarioBruto() * 0.075;
+        double fgts = f.getSalarioBruto() * 0.08;
+        double irrf = f.getSalarioBruto() > 2500 ? f.getSalarioBruto() * 0.15 : 0;
+        double salarioLiquido = f.getSalarioBruto() - inss - irrf;
+
+        f.setInss(inss);
+        f.setFgts(fgts);
+        f.setIrrf(irrf);
+        f.setSalarioLiquido(salarioLiquido);
     }
 }
