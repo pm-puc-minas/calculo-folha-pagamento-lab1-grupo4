@@ -1,0 +1,44 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: folha_db
+    restart: always
+    env_file: .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - folha_net
+
+  adminer:
+    image: adminer
+    container_name: folha_adminer
+    restart: always
+    ports:
+      - "8081:8080"
+    networks:
+      - folha_net
+
+  backend:
+    build:
+      context: ../back/FolhaPag
+      dockerfile: Dockerfile
+    container_name: folha_backend
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+    depends_on:
+      - postgres
+    networks:
+      - folha_net
+
+volumes:
+  pgdata:
+
+networks:
+  folha_net:
+    driver: bridge
