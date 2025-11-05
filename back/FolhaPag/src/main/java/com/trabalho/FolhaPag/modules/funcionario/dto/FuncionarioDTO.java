@@ -1,4 +1,4 @@
-package com.trabalho.FolhaPag.dto;
+package com.trabalho.FolhaPag.modules.funcionario.dto;
 
 import lombok.*;
 import java.time.LocalDate;

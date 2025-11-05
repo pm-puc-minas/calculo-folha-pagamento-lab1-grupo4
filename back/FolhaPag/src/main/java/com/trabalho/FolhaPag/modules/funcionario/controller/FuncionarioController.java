@@ -1,12 +1,12 @@
-package com.trabalho.FolhaPag.controller;
+package com.trabalho.FolhaPag.modules.funcionario.controller;
 
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import lombok.RequiredArgsConstructor;
 
-import com.trabalho.FolhaPag.dto.FuncionarioDTO;
-import com.trabalho.FolhaPag.entity.Funcionario;
-import com.trabalho.FolhaPag.service.FuncionarioService;
+import com.trabalho.FolhaPag.modules.funcionario.dto.FuncionarioDTO;
+import com.trabalho.FolhaPag.modules.funcionario.entity.Funcionario;
+import com.trabalho.FolhaPag.modules.funcionario.service.FuncionarioService;
 
 import java.util.List;
 

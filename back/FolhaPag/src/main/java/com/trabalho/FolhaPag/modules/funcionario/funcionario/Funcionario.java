@@ -1,4 +1,4 @@
-package com.trabalho.FolhaPag.funcionario;
+package com.trabalho.FolhaPag.modules.funcionario.funcionario;
 
 public class Funcionario extends Usuario {
 

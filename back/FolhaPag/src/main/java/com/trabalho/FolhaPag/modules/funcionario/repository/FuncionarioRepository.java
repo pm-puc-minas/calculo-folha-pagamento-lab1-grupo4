@@ -1,6 +1,6 @@
-package com.trabalho.FolhaPag.repository;
+package com.trabalho.FolhaPag.modules.funcionario.repository;
 
-import com.trabalho.FolhaPag.entity.Funcionario;
+import com.trabalho.FolhaPag.modules.funcionario.entity.Funcionario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

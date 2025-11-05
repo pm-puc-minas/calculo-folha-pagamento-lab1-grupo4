@@ -1,10 +1,10 @@
-package com.trabalho.FolhaPag.service;
+package com.trabalho.FolhaPag.modules.funcionario.service;
 
 import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
-import com.trabalho.FolhaPag.entity.Funcionario;
-import com.trabalho.FolhaPag.dto.FuncionarioDTO;
-import com.trabalho.FolhaPag.repository.FuncionarioRepository;
+import com.trabalho.FolhaPag.modules.funcionario.entity.Funcionario;
+import com.trabalho.FolhaPag.modules.funcionario.dto.FuncionarioDTO;
+import com.trabalho.FolhaPag.modules.funcionario.repository.FuncionarioRepository;
 
 import java.util.List;
 

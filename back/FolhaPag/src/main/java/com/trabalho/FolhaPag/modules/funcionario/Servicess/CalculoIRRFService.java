@@ -1,4 +1,4 @@
-package com.trabalho.FolhaPag.Servicess;
+package com.trabalho.FolhaPag.modules.funcionario.Servicess;
 
 import org.springframework.stereotype.Service;
 

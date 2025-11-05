@@ -1,4 +1,4 @@
-package com.trabalho.FolhaPag.entity;
+package com.trabalho.FolhaPag.modules.funcionario.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
