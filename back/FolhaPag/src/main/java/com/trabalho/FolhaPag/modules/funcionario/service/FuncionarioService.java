@@ -5,6 +5,9 @@ import lombok.RequiredArgsConstructor;
 import com.trabalho.FolhaPag.modules.funcionario.entity.Funcionario;
 import com.trabalho.FolhaPag.modules.funcionario.dto.FuncionarioDTO;
 import com.trabalho.FolhaPag.modules.funcionario.repository.FuncionarioRepository;
+import com.trabalho.FolhaPag.modules.folha.service.calculo.CalculoINSSService;
+import com.trabalho.FolhaPag.modules.folha.service.calculo.CalculoIRRFService;
+import com.trabalho.FolhaPag.modules.folha.service.calculo.CalculoFGTSService;
 
 import java.util.List;
 
@@ -13,6 +16,9 @@ import java.util.List;
 public class FuncionarioService {
 
     private final FuncionarioRepository repository;
+    private final CalculoINSSService calculoINSS;
+    private final CalculoIRRFService calculoIRRF;
+    private final CalculoFGTSService calculoFGTS;
 
     public List<Funcionario> listarTodos() {
         return repository.findAll();
@@ -20,7 +26,7 @@ public class FuncionarioService {
 
     public Funcionario criar(FuncionarioDTO dto) {
         Funcionario funcionario = converterParaEntidade(dto);
-        calcularDescontos(funcionario);
+        aplicarCalculos(funcionario);
         return repository.save(funcionario);
     }
 
@@ -40,15 +46,14 @@ public class FuncionarioService {
                 .build();
     }
 
-    private void calcularDescontos(Funcionario f) {
-        double inss = f.getSalarioBruto() * 0.075;
-        double fgts = f.getSalarioBruto() * 0.08;
-        double irrf = f.getSalarioBruto() > 2500 ? f.getSalarioBruto() * 0.15 : 0;
-        double salarioLiquido = f.getSalarioBruto() - inss - irrf;
+    private void aplicarCalculos(Funcionario f) {
+        double inss = calculoINSS.calcular(f);
+        double irrf = calculoIRRF.calcular(f);
+        double fgts = calculoFGTS.calcular(f);
 
         f.setInss(inss);
-        f.setFgts(fgts);
         f.setIrrf(irrf);
-        f.setSalarioLiquido(salarioLiquido);
+        f.setFgts(fgts);
+        f.setSalarioLiquido(f.getSalarioBruto() - inss - irrf);
     }
 }

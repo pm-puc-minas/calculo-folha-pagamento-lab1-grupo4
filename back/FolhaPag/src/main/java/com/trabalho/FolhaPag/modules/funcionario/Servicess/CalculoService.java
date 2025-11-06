@@ -11,12 +11,12 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CalculoService {
 
-    private final List<ICalculo> calculos;
+    private final List<IC> calculos;
 
     public Map<String, Double> calcularTodos(double salario) {
         return calculos.stream()
                 .collect(Collectors.toMap(
-                        ICalculo::getNome,
+                        IC::getNome,
                         c -> c.calcular(salario)
                 ));
     }

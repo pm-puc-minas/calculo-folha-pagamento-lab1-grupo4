@@ -1,8 +1,8 @@
 package com.trabalho.FolhaPag.ServiceTest;
 
-import com.trabalho.FolhaPag.modules.funcionario.Servicess.CalculoFGTSService;
-import com.trabalho.FolhaPag.modules.funcionario.Servicess.CalculoINSSService;
-import com.trabalho.FolhaPag.modules.funcionario.Servicess.CalculoIRRFService;
+import com.trabalho.FolhaPag.modules.funcionario.Servicess.CFGTSService;
+import com.trabalho.FolhaPag.modules.funcionario.Servicess.CINSSService;
+import com.trabalho.FolhaPag.modules.funcionario.Servicess.CIRRFService;
 import com.trabalho.FolhaPag.modules.funcionario.Servicess.CalculoService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,9 +17,9 @@ public class CalculoServiceTest {
 
     private final CalculoService calculoService = new CalculoService(
             Arrays.asList(
-                    new CalculoINSSService(),
-                    new CalculoIRRFService(),
-                    new CalculoFGTSService()
+                    new CINSSService(),
+                    new CIRRFService(),
+                    new CFGTSService()
             )
     );
 

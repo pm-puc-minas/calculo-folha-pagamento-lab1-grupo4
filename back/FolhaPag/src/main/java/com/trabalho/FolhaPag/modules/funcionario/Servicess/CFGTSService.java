@@ -4,7 +4,7 @@ package com.trabalho.FolhaPag.modules.funcionario.Servicess;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CalculoFGTSService implements ICalculo {
+public class CFGTSService implements IC {
 
     @Override
     public double calcular(double salario) {

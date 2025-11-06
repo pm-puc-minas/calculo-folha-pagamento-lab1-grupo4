@@ -3,7 +3,7 @@ package com.trabalho.FolhaPag.modules.funcionario.Servicess;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CalculoIRRFService implements ICalculo {
+public class CIRRFService implements IC {
 
     @Override
     public double calcular(double baseDeCalculo) {

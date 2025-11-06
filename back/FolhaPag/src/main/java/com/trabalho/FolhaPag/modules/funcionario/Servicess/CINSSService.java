@@ -3,7 +3,7 @@ package com.trabalho.FolhaPag.modules.funcionario.Servicess;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CalculoINSSService implements ICalculo {
+public class CINSSService implements IC {
 
     @Override
     public double calcular(double salario) {
