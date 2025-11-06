@@ -8,6 +8,7 @@ import com.trabalho.FolhaPag.modules.funcionario.repository.FuncionarioRepositor
 import com.trabalho.FolhaPag.modules.folha.service.calculo.CalculoINSSService;
 import com.trabalho.FolhaPag.modules.folha.service.calculo.CalculoIRRFService;
 import com.trabalho.FolhaPag.modules.folha.service.calculo.CalculoFGTSService;
+import com.trabalho.FolhaPag.modules.folha.service.calculo.model.CalculoContext;
 
 import java.util.List;
 
@@ -47,9 +48,21 @@ public class FuncionarioService {
     }
 
     private void aplicarCalculos(Funcionario f) {
-        double inss = calculoINSS.calcular(f);
-        double irrf = calculoIRRF.calcular(f);
-        double fgts = calculoFGTS.calcular(f);
+    CalculoContext baseContext = CalculoContext.builder()
+                .salarioBruto(f.getSalarioBruto())
+                .numeroDependentes(f.getNumeroDependentes())
+                .build();
+
+        double inss = calculoINSS.calcular(baseContext);
+
+    CalculoContext contextComInss = CalculoContext.builder()
+                .salarioBruto(f.getSalarioBruto())
+                .numeroDependentes(f.getNumeroDependentes())
+                .inss(inss)
+                .build();
+
+        double irrf = calculoIRRF.calcular(contextComInss);
+        double fgts = calculoFGTS.calcular(baseContext);
 
         f.setInss(inss);
         f.setIrrf(irrf);

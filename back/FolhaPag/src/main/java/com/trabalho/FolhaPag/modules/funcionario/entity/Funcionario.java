@@ -46,6 +46,7 @@ public class Funcionario {
     @Column(name = "salario_liquido")
     private Double salarioLiquido;
 
+    @Builder.Default
     @Column(nullable = false)
     private Boolean ativo = true;
 

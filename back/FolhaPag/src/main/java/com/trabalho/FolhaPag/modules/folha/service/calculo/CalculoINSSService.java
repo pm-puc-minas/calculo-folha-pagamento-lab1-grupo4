@@ -1,7 +1,7 @@
 package com.trabalho.FolhaPag.modules.folha.service.calculo;
 
 import com.trabalho.FolhaPag.modules.folha.service.calculo.interfaces.ICalculo;
-import com.trabalho.FolhaPag.modules.funcionario.entity.Funcionario;
+import com.trabalho.FolhaPag.modules.folha.service.calculo.model.CalculoContext;
 import org.springframework.stereotype.Service;
 
 
@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 public class CalculoINSSService implements ICalculo {
 
     @Override
-    public double calcular(Funcionario funcionario) {
-        double salario = funcionario.getSalarioBruto();
+    public double calcular(CalculoContext context) {
+        double salario = context.getSalarioBruto();
         double total = 0.0;
 
         double faixa1 = 1302.00;

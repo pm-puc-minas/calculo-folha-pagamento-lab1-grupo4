@@ -1,7 +1,7 @@
 package com.trabalho.FolhaPag.modules.folha.service.calculo;
 
 import com.trabalho.FolhaPag.modules.folha.service.calculo.interfaces.ICalculo;
-import com.trabalho.FolhaPag.modules.funcionario.entity.Funcionario;
+import com.trabalho.FolhaPag.modules.folha.service.calculo.model.CalculoContext;
 import org.springframework.stereotype.Service;
 
 
@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 public class CalculoIRRFService implements ICalculo {
 
     @Override
-    public double calcular(Funcionario funcionario) {
-        double base = funcionario.getSalarioBruto() - (funcionario.getInss() != null ? funcionario.getInss() : 0);
-        double deducaoDependentes = funcionario.getNumeroDependentes() * 189.59;
+    public double calcular(CalculoContext context) {
+        double base = context.getSalarioBruto() - (context.getInss() != null ? context.getInss() : 0);
+        double deducaoDependentes = (context.getNumeroDependentes() != null ? context.getNumeroDependentes() : 0) * 189.59;
         base -= deducaoDependentes;
 
         if (base <= 1903.98) return 0;

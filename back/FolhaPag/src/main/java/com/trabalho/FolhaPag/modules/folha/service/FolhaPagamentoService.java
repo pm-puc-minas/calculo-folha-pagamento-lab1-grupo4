@@ -19,7 +19,7 @@ public class FolhaPagamentoService {
 
     private final FolhaPagamentoRepository folhaRepository;
     private final FuncionarioRepository funcionarioRepository;
-    private final FolhaCalculoService folhaCalculoService; // <-- injeta o serviço de cálculo
+    private final FolhaCalculoService folhaCalculoService;
 
     public List<FolhaPagamento> listarTodas() {
         return folhaRepository.findAll();
@@ -33,20 +33,20 @@ public class FolhaPagamentoService {
         Funcionario funcionario = funcionarioRepository.findById(funcionarioId)
                 .orElseThrow(() -> new RuntimeException("Funcionário não encontrado."));
 
-        // Cria a folha base
+    // Cria a folha base
         FolhaPagamento folha = FolhaPagamento.builder()
                 .funcionario(funcionario)
                 .mesReferencia(mesReferencia)
                 .salarioBruto(funcionario.getSalarioBruto())
                 .build();
 
-        //  Calcula todos os tributos e benefícios (INSS, IRRF, FGTS, VT, VA etc.)
+    // Calcula tributos e benefícios
         Map<String, Double> resultados = folhaCalculoService.calcularTodos(funcionario);
 
         double totalDescontos = 0.0;
         double totalBeneficios = 0.0;
 
-        //  Agrupa todos os calc 
+    // Agrupa valores em descontos e benefícios
         for (Map.Entry<String, Double> entry : resultados.entrySet()) {
             String tipo = entry.getKey().toUpperCase();
             double valor = entry.getValue();
