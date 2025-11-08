@@ -1,5 +1,7 @@
 package com.trabalho.FolhaPag.modules.funcionario.service;
 
+import com.trabalho.FolhaPag.Exceptions.UnexpectedException;
+import com.trabalho.FolhaPag.Exceptions.ValueNotValidException;
 import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import com.trabalho.FolhaPag.modules.funcionario.entity.Funcionario;
@@ -26,6 +28,15 @@ public class FuncionarioService {
     }
 
     public Funcionario criar(FuncionarioDTO dto) {
+        if (dto == null) {
+            throw new UnexpectedException("Funcionário não pode ser nulo");
+        }
+        if (dto.getNome() == null) {
+            throw new ValueNotValidException("Nome do funcionário inválido");
+        }
+        if (dto.getSalarioBruto() <= 0) {
+            throw new ValueNotValidException("Salário do funcionário inválido");
+        }
         Funcionario funcionario = converterParaEntidade(dto);
         aplicarCalculos(funcionario);
         return repository.save(funcionario);

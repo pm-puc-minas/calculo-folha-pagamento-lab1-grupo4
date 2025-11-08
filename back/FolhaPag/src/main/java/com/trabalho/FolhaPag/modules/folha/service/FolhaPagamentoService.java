@@ -1,5 +1,6 @@
 package com.trabalho.FolhaPag.modules.folha.service;
 
+import com.trabalho.FolhaPag.Exceptions.ValueNotValidException;
 import com.trabalho.FolhaPag.modules.folha.entity.FolhaPagamento;
 import com.trabalho.FolhaPag.modules.folha.repository.FolhaPagamentoRepository;
 import com.trabalho.FolhaPag.modules.folha.service.calculo.FolhaCalculoService;
@@ -31,7 +32,11 @@ public class FolhaPagamentoService {
 
     public FolhaPagamento criar(Long funcionarioId, LocalDate mesReferencia) {
         Funcionario funcionario = funcionarioRepository.findById(funcionarioId)
-                .orElseThrow(() -> new RuntimeException("Funcionário não encontrado."));
+                .orElseThrow(() -> new ValueNotValidException("Funcionário não encontrado."));
+
+        if (funcionario.getSalarioBruto() <= 0) {
+            throw new ValueNotValidException("Salário bruto inválido");
+        }
 
     // Cria a folha base
         FolhaPagamento folha = FolhaPagamento.builder()
@@ -39,6 +44,7 @@ public class FolhaPagamentoService {
                 .mesReferencia(mesReferencia)
                 .salarioBruto(funcionario.getSalarioBruto())
                 .build();
+
 
     // Calcula tributos e benefícios
         Map<String, Double> resultados = folhaCalculoService.calcularTodos(funcionario);
