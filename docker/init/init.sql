@@ -14,7 +14,10 @@ CREATE TABLE IF NOT EXISTS funcionario (
     horas_trabalhadas NUMERIC(10,2),
     vale_transporte BOOLEAN NOT NULL DEFAULT FALSE,
     numero_dependentes INTEGER NOT NULL DEFAULT 0,
-    ativo BOOLEAN NOT NULL DEFAULT TRUE
+    ativo BOOLEAN NOT NULL DEFAULT TRUE,
+    matricula VARCHAR(10) UNIQUE NOT NULL,
+    senha VARCHAR(255) NOT NULL,
+    is_admin BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE IF NOT EXISTS folha_pagamento (

@@ -11,26 +11,26 @@ function Register() {
             <Building2 className="icone-logo" />
           </div>
           <h1 className="titulo-login">Sistema de Folha de Pagamento</h1>
-          <p className="subtitulo-login">Faça login para acessar o sistema</p>
+          <p className="subtitulo-login">Crie sua conta para acessar o sistema</p>
         </div>
 
         <div className="card-login">
           <div className="cabecalho-card">
-            <h2 className="titulo-card">Acesso ao Sistema</h2>
+            <h2 className="titulo-card">Criar Conta</h2>
             <p className="descricao-card">
-              Digite sua matrícula e senha para continuar
+              Preencha os dados abaixo para se registrar
             </p>
           </div>
 
           <div className="formulario-card">
             <div className="campo-card">
-              <label htmlFor="matricula" className="rotulo-card">
+              <label htmlFor="nome" className="rotulo-card">
                 Nome completo
               </label>
               <div className="campo-input">
                 <User className="icone-input" />
                 <input
-                  id="Nome completo"
+                  id="nome"
                   type="text"
                   placeholder="Digite seu nome completo"
                   className="input-card"
@@ -69,22 +69,22 @@ function Register() {
               </div>
             </div>
             <div className="campo-card">
-              <label htmlFor="senha" className="rotulo-card">
+              <label htmlFor="confirmarSenha" className="rotulo-card">
                 Confirmar Senha
               </label>
               <div className="campo-input">
                 <Lock className="icone-input" />
                 <input
-                  id="senha"
+                  id="confirmarSenha"
                   type="password"
-                  placeholder="Digite sua senha"
+                  placeholder="Confirme sua senha"
                   className="input-card"
                 />
               </div>
             </div>
 
             <button type="button" className="botao-card">
-              Entrar
+              Registrar
             </button>
           </div>
 

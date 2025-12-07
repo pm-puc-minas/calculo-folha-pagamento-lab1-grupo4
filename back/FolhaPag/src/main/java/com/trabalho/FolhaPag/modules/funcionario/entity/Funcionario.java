@@ -61,4 +61,17 @@ public class Funcionario {
 
     @Column(name = "numero_dependentes")
     private Integer numeroDependentes;
+
+    @Column(nullable = false, unique = true, length = 10)
+    private String matricula;
+
+    @Column(length = 255)
+    private String senha;
+
+    @Builder.Default
+    @Column(nullable = false)
+    private Boolean isAdmin = false;
+
+    @Column(name = "alimentacao")
+    private Boolean alimentacao;
 }

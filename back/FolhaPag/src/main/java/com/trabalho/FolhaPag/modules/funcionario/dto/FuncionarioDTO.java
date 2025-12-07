@@ -10,6 +10,7 @@ import java.time.LocalDate;
 public class FuncionarioDTO {
     private String nome;
     private String cpf;
+    private String matricula;
     private String cargo;
     private String departamento;
     private Double salarioBruto;

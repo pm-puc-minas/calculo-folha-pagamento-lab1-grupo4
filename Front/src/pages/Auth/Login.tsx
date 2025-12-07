@@ -1,7 +1,63 @@
 import { Building2, User, Lock } from "lucide-react"
+import { useState } from "react"
 import './Auth.css'
 
 function Login() {
+  const [matricula, setMatricula] = useState("")
+  const [senha, setSenha] = useState("")
+  const [mensagem, setMensagem] = useState("")
+  const [carregando, setCarregando] = useState(false)
+  const [erro, setErro] = useState(false)
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault()
+    
+    if (!matricula || !senha) {
+      setMensagem("Preencha todos os campos!")
+      setErro(true)
+      return
+    }
+
+    setCarregando(true)
+    setErro(false)
+    setMensagem("")
+
+    try {
+      const response = await fetch("http://localhost:8080/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          matricula: matricula.trim(),
+          senha: senha
+        })
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        setMensagem("Login realizado com sucesso!")
+        setErro(false)
+        // Armazena as informações do usuário
+        localStorage.setItem("usuario", JSON.stringify(data))
+        // Redireciona para dashboard
+        setTimeout(() => {
+          window.location.href = data.isAdmin ? "/create-func" : "/dashboard"
+        }, 1000)
+      } else {
+        setMensagem(data.mensagem || "Falha ao fazer login")
+        setErro(true)
+      }
+    } catch (erro) {
+      setMensagem("Erro ao conectar com o servidor")
+      setErro(true)
+      console.error("Erro:", erro)
+    } finally {
+      setCarregando(false)
+    }
+  }
+
   return (
     <div className="pagina-login">
       <div className="container-login">
@@ -22,7 +78,7 @@ function Login() {
             </p>
           </div>
 
-          <div className="formulario-card">
+          <form onSubmit={handleLogin} className="formulario-card">
   
             <div className="campo-card">
               <label htmlFor="matricula" className="rotulo-card">
@@ -35,6 +91,9 @@ function Login() {
                   type="text"
                   placeholder="Digite sua matrícula"
                   className="input-card"
+                  value={matricula}
+                  onChange={(e) => setMatricula(e.target.value)}
+                  disabled={carregando}
                 />
               </div>
             </div>
@@ -50,14 +109,27 @@ function Login() {
                   type="password"
                   placeholder="Digite sua senha"
                   className="input-card"
+                  value={senha}
+                  onChange={(e) => setSenha(e.target.value)}
+                  disabled={carregando}
                 />
               </div>
             </div>
 
-            <button type="button" className="botao-card">
-              Entrar
+            {mensagem && (
+              <div className={`mensagem-feedback ${erro ? "erro" : "sucesso"}`}>
+                {mensagem}
+              </div>
+            )}
+
+            <button 
+              type="submit" 
+              className="botao-card"
+              disabled={carregando}
+            >
+              {carregando ? "Entrando..." : "Entrar"}
             </button>
-          </div>
+          </form>
 
           <div className="cadastro-card">
             <p className="texto-cadastro">Ainda não possui cadastro? <strong><a href="/register">cadastrar</a></strong></p>

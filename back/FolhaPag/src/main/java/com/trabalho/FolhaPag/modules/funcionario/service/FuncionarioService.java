@@ -46,6 +46,7 @@ public class FuncionarioService {
         return Funcionario.builder()
                 .nome(dto.getNome())
                 .cpf(dto.getCpf())
+                .matricula(dto.getMatricula())
                 .cargo(dto.getCargo())
                 .departamento(dto.getDepartamento())
                 .salarioBruto(dto.getSalarioBruto())
