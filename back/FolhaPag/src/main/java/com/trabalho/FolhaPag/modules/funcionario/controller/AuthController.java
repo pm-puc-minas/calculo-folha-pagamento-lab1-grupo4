@@ -73,4 +73,51 @@ public class AuthController {
         byte[] hash = md.digest(senha.getBytes());
         return Base64.getEncoder().encodeToString(hash);
     }
+
+    @PostMapping("/registrar")
+public ResponseEntity<?> registrar(@RequestBody LoginDTO loginDTO) {
+    try {
+        // Busca funcionário pela matrícula
+        Funcionario funcionario = funcionarioRepository.findByMatricula(loginDTO.getMatricula());
+
+        if (funcionario == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(LoginResponseDTO.builder()
+                            .mensagem("Matrícula não encontrada. Entre em contato com o RH.")
+                            .build());
+        }
+
+        // Verifica se já tem senha cadastrada
+        if (funcionario.getSenha() != null && !funcionario.getSenha().isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(LoginResponseDTO.builder()
+                            .mensagem("Esta matrícula já possui senha cadastrada. Use o login.")
+                            .build());
+        }
+
+        // Valida senha
+        if (loginDTO.getSenha() == null || loginDTO.getSenha().length() < 4) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(LoginResponseDTO.builder()
+                            .mensagem("Senha deve ter no mínimo 4 caracteres")
+                            .build());
+        }
+
+        // Cadastra a senha
+        String senhaEncriptada = encriptarSenha(loginDTO.getSenha());
+        funcionario.setSenha(senhaEncriptada);
+        funcionarioRepository.save(funcionario);
+
+        return ResponseEntity.ok(LoginResponseDTO.builder()
+                .mensagem("Senha cadastrada com sucesso! Agora você pode fazer login.")
+                .nome(funcionario.getNome())
+                .build());
+
+    } catch (Exception e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(LoginResponseDTO.builder()
+                        .mensagem("Erro ao cadastrar senha")
+                        .build());
+    }
+}
 }

@@ -54,8 +54,10 @@ public class FuncionarioService {
                 .horasPrevistas(dto.getHorasPrevistas())
                 .horasTrabalhadas(dto.getHorasTrabalhadas())
                 .valeTransporte(dto.getValeTransporte())
+                .alimentacao(dto.getAlimentacao()) 
                 .numeroDependentes(dto.getNumeroDependentes())
                 .ativo(true)
+                .isAdmin(false)
                 .build();
     }
 

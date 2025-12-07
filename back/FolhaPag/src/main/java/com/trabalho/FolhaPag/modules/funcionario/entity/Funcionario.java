@@ -65,7 +65,7 @@ public class Funcionario {
     @Column(nullable = false, unique = true, length = 10)
     private String matricula;
 
-    @Column(length = 255)
+    @Column(length = 255, nullable = true)  
     private String senha;
 
     @Builder.Default

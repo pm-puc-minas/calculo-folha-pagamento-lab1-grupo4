@@ -18,5 +18,6 @@ public class FuncionarioDTO {
     private Double horasPrevistas;
     private Double horasTrabalhadas;
     private Boolean valeTransporte;
+    private Boolean alimentacao;
     private Integer numeroDependentes;
 }

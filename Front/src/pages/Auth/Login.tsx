@@ -43,7 +43,7 @@ function Login() {
         localStorage.setItem("usuario", JSON.stringify(data))
         // Redireciona para dashboard
         setTimeout(() => {
-          window.location.href = data.isAdmin ? "/create-func" : "/dashboard"
+          window.location.href = data.isAdmin ? "/create-funcionarios" : "/dashboard"
         }, 1000)
       } else {
         setMensagem(data.mensagem || "Falha ao fazer login")

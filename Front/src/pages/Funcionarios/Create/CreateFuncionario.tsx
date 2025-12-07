@@ -13,6 +13,7 @@ function CreateFuncionario() {
     dataAdmissao: new Date().toISOString().split('T')[0],
     horasPrevistas: '',
     valeTransporte: false,
+    alimentacao: false, // ADICIONADO
     numeroDependentes: 0
   })
 
@@ -104,7 +105,8 @@ function CreateFuncionario() {
         horasPrevistas: parseFloat(formData.horasPrevistas),
         horasTrabalhadas: 0,
         valeTransporte: formData.valeTransporte,
-        numeroDependentes: parseInt(formData.numeroDependentes) || 0
+        alimentacao: formData.alimentacao, // ADICIONADO
+        numeroDependentes: parseInt(formData.numeroDependentes.toString()) || 0
       }
 
       const response = await fetch('http://localhost:8080/api/funcionarios', {
@@ -130,6 +132,7 @@ function CreateFuncionario() {
           dataAdmissao: new Date().toISOString().split('T')[0],
           horasPrevistas: '',
           valeTransporte: false,
+          alimentacao: false,
           numeroDependentes: 0
         })
         // Redireciona após 2 segundos
@@ -138,7 +141,7 @@ function CreateFuncionario() {
         }, 2000)
       } else {
         const data = await response.json()
-        setMensagem(data.mensagem || 'Erro ao cadastrar funcionário')
+        setMensagem(data.message || 'Erro ao cadastrar funcionário')
         setErro(true)
       }
     } catch (erro) {
@@ -310,6 +313,18 @@ function CreateFuncionario() {
                   disabled={carregando}
                 />
                 <label htmlFor="valeTransporte">Vale Transporte</label>
+              </div>
+              
+              <div className="campo-checkbox">
+                <input
+                  type="checkbox"
+                  id="alimentacao"
+                  name="alimentacao"
+                  checked={formData.alimentacao}
+                  onChange={handleChange}
+                  disabled={carregando}
+                />
+                <label htmlFor="alimentacao">Vale Alimentação</label>
               </div>
             </div>
           </div>

@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS funcionario (
     numero_dependentes INTEGER NOT NULL DEFAULT 0,
     ativo BOOLEAN NOT NULL DEFAULT TRUE,
     matricula VARCHAR(10) UNIQUE NOT NULL,
-    senha VARCHAR(255) NOT NULL,
+    senha VARCHAR(255),
     is_admin BOOLEAN NOT NULL DEFAULT FALSE
 );
 
