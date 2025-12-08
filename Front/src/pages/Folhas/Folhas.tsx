@@ -38,23 +38,25 @@ function Folhas() {
   }, [])
 
   return (
-    <div className="pagina-folhas">
+    <div className="pagina-folhas container">
       <h1>Folhas de Pagamento</h1>
       {loading && <p>Carregando...</p>}
       {error && <p className="erro">{error}</p>}
       {!loading && !error && (
-        <ul className="lista-folhas">
-          {folhas.map((f) => (
-            <li key={f.id} className="item-folha">
-              <div>
-                <strong>{f.funcionario?.nome || '—'}</strong>
-                <div className="meta">Matrícula: {f.funcionario?.matricula || '—'}</div>
-              </div>
-              <div className="meta">Período: {new Date(f.mesReferencia).toLocaleDateString()}</div>
-              <div className="valor">R$ { (f.salarioLiquido ?? f.salarioBruto).toFixed(2) }</div>
-            </li>
-          ))}
-        </ul>
+        <div className="card">
+          <ul className="lista-folhas">
+            {folhas.map((f) => (
+              <li key={f.id} className="item-folha">
+                <div>
+                  <strong>{f.funcionario?.nome || '—'}</strong>
+                  <div className="meta">Matrícula: {f.funcionario?.matricula || '—'}</div>
+                </div>
+                <div className="meta">Período: {new Date(f.mesReferencia).toLocaleDateString()}</div>
+                <div className="valor">R$ { (f.salarioLiquido ?? f.salarioBruto).toFixed(2) }</div>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </div>
   )

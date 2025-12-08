@@ -27,31 +27,33 @@ function Salarios() {
   }, [])
 
   return (
-    <div className="pagina-salarios">
+    <div className="pagina-salarios container">
       <h1>Salários</h1>
       {loading && <p>Carregando salários...</p>}
       {error && <p className="erro">{error}</p>}
       {!loading && !error && (
-        <table className="tabela-salarios-page">
-          <thead>
-            <tr>
-              <th>Funcionário</th>
-              <th>Matrícula</th>
-              <th>Período</th>
-              <th>Salário Líquido</th>
-            </tr>
-          </thead>
-          <tbody>
-            {salarios.map((s) => (
-              <tr key={s.id}>
-                <td>{s.funcionario?.nome || '—'}</td>
-                <td>{s.funcionario?.matricula || '—'}</td>
-                <td>{new Date(s.mesReferencia).toLocaleDateString()}</td>
-                <td>R$ {(s.salarioLiquido ?? s.salarioBruto).toFixed(2)}</td>
+        <div className="card">
+          <table className="tabela-salarios-page">
+            <thead>
+              <tr>
+                <th>Funcionário</th>
+                <th>Matrícula</th>
+                <th>Período</th>
+                <th>Salário Líquido</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {salarios.map((s) => (
+                <tr key={s.id}>
+                  <td>{s.funcionario?.nome || '—'}</td>
+                  <td>{s.funcionario?.matricula || '—'}</td>
+                  <td>{new Date(s.mesReferencia).toLocaleDateString()}</td>
+                  <td>R$ {(s.salarioLiquido ?? s.salarioBruto).toFixed(2)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   )

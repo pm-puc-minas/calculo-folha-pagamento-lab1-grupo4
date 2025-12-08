@@ -27,6 +27,23 @@ public class FuncionarioService {
         return repository.findAll();
     }
 
+    public Funcionario buscarPorMatricula(String matricula) {
+        if (matricula == null) return null;
+        return repository.findByMatricula(matricula);
+    }
+
+    public List<Funcionario> listarVisiveisPara(String requesterMatricula) {
+        Funcionario req = buscarPorMatricula(requesterMatricula);
+        if (req == null) {
+            // sem header, por segurança não expor todos
+            return List.of();
+        }
+        if (req.getIsAdmin() || "0001".equals(req.getMatricula())) {
+            return listarTodos();
+        }
+        return List.of(req);
+    }
+
     public Funcionario criar(FuncionarioDTO dto) {
         if (dto == null) {
             throw new UnexpectedException("Funcionário não pode ser nulo");

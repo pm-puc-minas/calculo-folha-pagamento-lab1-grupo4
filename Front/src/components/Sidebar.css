@@ -1,0 +1,23 @@
+.app-sidebar {
+  width: 240px;
+  background: linear-gradient(180deg,#071428,#081827);
+  color: #fff;
+  padding: 18px;
+  min-height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.logo { font-weight:800; font-size:18px; margin-bottom:12px }
+.sidebar-nav { display:flex; flex-direction:column; gap:8px }
+.sidebar-nav a { color: #cbd5e1; text-decoration:none; padding:8px 10px; border-radius:6px }
+.sidebar-nav a:hover { background: rgba(255,255,255,0.03); color:#fff }
+.sidebar-footer { margin-top: 18px }
+.user-block { display:flex; flex-direction:column; gap:6px }
+.user-name { font-weight:700 }
+.user-matricula { font-size:13px }
+.actions { display:flex; gap:8px; margin-top:8px }
+
+@media (max-width:900px){
+  .app-sidebar { display:none }
+}

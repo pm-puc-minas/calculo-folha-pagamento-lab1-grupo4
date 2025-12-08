@@ -1,0 +1,4 @@
+.pagina-funcionarios { padding: 22px }
+.lista-funcionarios { list-style:none; padding:0; margin:12px 0 }
+.item-funcionario { display:flex; justify-content:space-between; align-items:center; padding:12px; background:var(--surface); border-radius:8px; margin-bottom:10px }
+.item-funcionario .muted { color:var(--muted); font-size:13px }

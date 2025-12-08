@@ -45,13 +45,15 @@ function Relatorios() {
   }
 
   return (
-    <div className="pagina-relatorios">
-      <h1>Relatórios</h1>
-      <p>Gerar relatórios e exportar dados da folha de pagamento.</p>
+    <div className="pagina-relatorios container">
+      <div className="card">
+        <h1>Relatórios</h1>
+        <p>Gerar relatórios e exportar dados da folha de pagamento.</p>
 
-      <div className="acoes-relatorios">
-        <button onClick={handleExportCsv}>Exportar CSV</button>
-        <button onClick={handleDownloadServidor} disabled={baixando}>{baixando ? 'Baixando...' : 'Exportar PDF (servidor)'}</button>
+        <div className="acoes-relatorios">
+          <button className="btn secondary" onClick={handleExportCsv}>Exportar CSV</button>
+          <button className="btn" onClick={handleDownloadServidor} disabled={baixando}>{baixando ? 'Baixando...' : 'Exportar PDF (servidor)'}</button>
+        </div>
       </div>
     </div>
   )

@@ -23,7 +23,19 @@ public class FolhaPagamentoService {
     private final FolhaCalculoService folhaCalculoService;
 
     public List<FolhaPagamento> listarTodas() {
-        return folhaRepository.findAll();
+        // use join-fetch to ensure funcionario is populated and avoid lazy proxy issues when serializing
+        try {
+            return folhaRepository.findAllWithFuncionario();
+        } catch (Exception ex) {
+            return folhaRepository.findAll();
+        }
+    }
+
+    public List<FolhaPagamento> listarPorMatricula(String matricula) {
+        if (matricula == null) return List.of();
+        var funcionario = funcionarioRepository.findByMatricula(matricula);
+        if (funcionario == null) return List.of();
+        return folhaRepository.findByFuncionario(funcionario);
     }
 
     public Optional<FolhaPagamento> buscarPorId(Long id) {

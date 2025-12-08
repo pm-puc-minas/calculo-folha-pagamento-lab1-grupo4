@@ -17,21 +17,11 @@ function Header() {
 
   return (
     <header className="app-header">
-      <div className="logo-area">
-        <Link to="/" className="logo-link">Sistema Folha</Link>
-      </div>
-      <nav className="nav-links">
-        <Link to="/dashboard">Dashboard</Link>
-        <Link to="/create-funcionarios">Funcionários</Link>
-        <Link to="/folhas">Folhas</Link>
-      </nav>
-      <div className="user-area">
-        {usuarioNome ? (<>
-          <span className="user-name">{usuarioNome}</span>
-          <button className="logout-button" onClick={handleLogout}>Sair</button>
-        </>) : (
-          <Link to="/login">Entrar</Link>
-        )}
+      <div className="container header-inner">
+        <div className="logo-area">
+          <Link to="/" className="logo-link">Sistema Folha</Link>
+        </div>
+        <div />
       </div>
     </header>
   )

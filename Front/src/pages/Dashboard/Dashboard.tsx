@@ -19,7 +19,7 @@ function Dashboard() {
   ]
 
   return (
-    <div className="pagina-dashboard">
+    <div className="pagina-dashboard container">
       <header className="cabecalho-dashboard">
         <div>
           <h1>Dashboard</h1>
@@ -45,7 +45,7 @@ function Dashboard() {
         ))}
       </section>
 
-      <section className="salarios-recentes">
+      <section className="salarios-recentes card">
         <h2>Salários Recentes</h2>
         <p className="descricao-pequena">Últimas folhas e pagamentos (exemplo)</p>
         <table className="tabela-salarios">

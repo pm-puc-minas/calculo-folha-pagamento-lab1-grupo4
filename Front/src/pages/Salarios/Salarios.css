@@ -1,5 +1,6 @@
-.pagina-salarios { padding: 22px; max-width: 1100px; margin: 0 auto }
-.tabela-salarios-page { width:100%; border-collapse:collapse; background:#fff; border-radius:8px; overflow:hidden }
-.tabela-salarios-page th, .tabela-salarios-page td { padding:12px 14px; border-bottom:1px solid #eee; text-align:left }
-.tabela-salarios-page thead th { background:#f8fafc; font-weight:600 }
-.erro { color:#b91c1c }
+.pagina-salarios { padding: 22px }
+.pagina-salarios .tabela-salarios-page { width:100%; border-collapse:collapse; background:var(--surface); border-radius:8px; overflow:hidden }
+.pagina-salarios .tabela-salarios-page th, .pagina-salarios .tabela-salarios-page td { padding:12px 14px; border-bottom:1px solid #eee; text-align:left }
+.pagina-salarios .tabela-salarios-page thead th { background:#f8fafc; font-weight:600 }
+.pagina-salarios .erro { color:#b91c1c }
+

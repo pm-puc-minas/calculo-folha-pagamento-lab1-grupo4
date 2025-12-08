@@ -1,3 +1,4 @@
-.pagina-relatorios { padding: 22px; max-width: 900px; margin: 0 auto }
-.acoes-relatorios { display:flex; gap:10px; margin-top:12px }
-.acoes-relatorios button { padding:8px 12px; border-radius:6px; border:1px solid #cbd5e1; background:#fff }
+.pagina-relatorios { padding: 22px }
+.pagina-relatorios .acoes-relatorios { display:flex; gap:10px; margin-top:12px }
+.pagina-relatorios .acoes-relatorios button { padding:8px 12px; border-radius:6px; border:1px solid #cbd5e1; background:var(--surface) }
+
