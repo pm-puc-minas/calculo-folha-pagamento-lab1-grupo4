@@ -47,31 +47,7 @@ function Dashboard() {
 
       <section className="salarios-recentes card">
         <h2>Salários Recentes</h2>
-        <p className="descricao-pequena">Últimas folhas e pagamentos (exemplo)</p>
-        <table className="tabela-salarios">
-          <thead>
-            <tr>
-              <th>Funcionário</th>
-              <th>Matrícula</th>
-              <th>Período</th>
-              <th>Valor</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>João Silva</td>
-              <td>12345</td>
-              <td>Nov/2025</td>
-              <td>R$ 3.200,00</td>
-            </tr>
-            <tr>
-              <td>Maria Souza</td>
-              <td>67890</td>
-              <td>Nov/2025</td>
-              <td>R$ 4.150,00</td>
-            </tr>
-          </tbody>
-        </table>
+        <p className="descricao-pequena">Acesse a página de Salários para ver suas folhas de pagamento detalhadas</p>
       </section>
     </div>
   )

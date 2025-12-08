@@ -16,6 +16,10 @@ type Folha = {
   salarioLiquido?: number
   totalDescontos?: number
   totalBeneficios?: number
+  inss?: number
+  irrf?: number
+  fgts?: number
+  valeTransporte?: number
 }
 
 function Folhas() {
@@ -57,8 +61,10 @@ function Folhas() {
                   <th>Matrícula</th>
                   <th>Período</th>
                   <th>Salário Bruto</th>
-                  <th>Descontos</th>
-                  <th>Benefícios</th>
+                  <th>INSS</th>
+                  <th>IRRF</th>
+                  <th>Vale Transporte</th>
+                  <th>FGTS</th>
                   <th>Salário Líquido</th>
                 </tr>
               </thead>
@@ -69,8 +75,10 @@ function Folhas() {
                     <td>{f.funcionario?.matricula || '—'}</td>
                     <td>{new Date(f.mesReferencia).toLocaleDateString('pt-BR')}</td>
                     <td>R$ {(f.salarioBruto ?? 0).toFixed(2)}</td>
-                    <td>R$ {(f.totalDescontos ?? 0).toFixed(2)}</td>
-                    <td>R$ {(f.totalBeneficios ?? 0).toFixed(2)}</td>
+                    <td>R$ {(f.inss ?? 0).toFixed(2)}</td>
+                    <td>R$ {(f.irrf ?? 0).toFixed(2)}</td>
+                    <td>R$ {(f.valeTransporte ?? 0).toFixed(2)}</td>
+                    <td>R$ {(f.fgts ?? 0).toFixed(2)}</td>
                     <td><strong>R$ {(f.salarioLiquido ?? f.salarioBruto ?? 0).toFixed(2)}</strong></td>
                   </tr>
                 ))}

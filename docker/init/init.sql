@@ -28,6 +28,10 @@ CREATE TABLE IF NOT EXISTS folha_pagamento (
     salario_liquido NUMERIC(12,2),
     total_descontos NUMERIC(12,2) DEFAULT 0,
     total_beneficios NUMERIC(12,2) DEFAULT 0,
+    inss NUMERIC(12,2) DEFAULT 0,
+    irrf NUMERIC(12,2) DEFAULT 0,
+    fgts NUMERIC(12,2) DEFAULT 0,
+    vale_transporte NUMERIC(12,2) DEFAULT 0,
     criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

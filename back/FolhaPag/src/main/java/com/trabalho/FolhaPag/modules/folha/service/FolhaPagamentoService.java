@@ -61,23 +61,23 @@ public class FolhaPagamentoService {
     // Calcula tributos e benefícios
         Map<String, Double> resultados = folhaCalculoService.calcularTodos(funcionario);
 
-        double totalDescontos = 0.0;
-        double totalBeneficios = 0.0;
+        double inss = resultados.getOrDefault("INSS", 0.0);
+        double irrf = resultados.getOrDefault("IRRF", 0.0);
+        double fgts = resultados.getOrDefault("FGTS", 0.0);
+        double valeTransporte = 0.0;
 
-    // Agrupa valores em descontos e benefícios
-        for (Map.Entry<String, Double> entry : resultados.entrySet()) {
-            String tipo = entry.getKey().toUpperCase();
-            double valor = entry.getValue();
-
-            if (tipo.equals("INSS") || tipo.equals("IRRF") || tipo.equals("VT")) {
-                totalDescontos += valor;
-            } else if (tipo.equals("FGTS") || tipo.equals("VA")) {
-                totalBeneficios += valor;
-            }
+        if (Boolean.TRUE.equals(funcionario.getValeTransporte())) {
+            valeTransporte = funcionario.getSalarioBruto() * 0.06;
         }
 
+        double totalDescontos = inss + irrf + valeTransporte;
+        double totalBeneficios = fgts;
         double salarioLiquido = folha.getSalarioBruto() - totalDescontos + totalBeneficios;
 
+        folha.setInss(inss);
+        folha.setIrrf(irrf);
+        folha.setFgts(fgts);
+        folha.setValeTransporte(valeTransporte);
         folha.setTotalDescontos(totalDescontos);
         folha.setTotalBeneficios(totalBeneficios);
         folha.setSalarioLiquido(salarioLiquido);

@@ -38,6 +38,18 @@ public class FolhaPagamento {
     @Column(name = "total_beneficios")
     private Double totalBeneficios = 0.0;
 
+    @Column(name = "inss")
+    private Double inss = 0.0;
+
+    @Column(name = "irrf")
+    private Double irrf = 0.0;
+
+    @Column(name = "fgts")
+    private Double fgts = 0.0;
+
+    @Column(name = "vale_transporte")
+    private Double valeTransporte = 0.0;
+
     @Column(name = "criado_em")
     private LocalDateTime criadoEm = LocalDateTime.now();
 }
