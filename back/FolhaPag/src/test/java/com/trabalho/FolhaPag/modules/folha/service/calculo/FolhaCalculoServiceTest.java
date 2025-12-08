@@ -49,9 +49,9 @@ class FolhaCalculoServiceTest {
     @Test
     @DisplayName("Ordem garante que IRRF recebe INSS previamente calculado")
     void ordemCalculoInssAntesIrrf() {
-        FolhaCalculoService service = new FolhaCalculoService(List.of(
-                new INSSFake(), new IRRFFake(), new FGTSFake()
-        ));
+        FolhaCalculoService service = new FolhaCalculoService(
+                new com.trabalho.FolhaPag.modules.folha.service.calculo.factory.ImpostoCalculadorFactory()
+        );
 
         Funcionario f = Funcionario.builder()
                 .salarioBruto(1500.00)
@@ -78,9 +78,9 @@ class FolhaCalculoServiceTest {
     @Test
     @DisplayName("Contexto sem INSS prévio calcula e injeta para IRRF")
     void calculaInssQuandoNaoExisteNoFuncionario() {
-        FolhaCalculoService service = new FolhaCalculoService(List.of(
-                new INSSFake(), new IRRFFake()
-        ));
+        FolhaCalculoService service = new FolhaCalculoService(
+                new com.trabalho.FolhaPag.modules.folha.service.calculo.factory.ImpostoCalculadorFactory()
+        );
 
         Funcionario f = Funcionario.builder()
                 .salarioBruto(1000.00)

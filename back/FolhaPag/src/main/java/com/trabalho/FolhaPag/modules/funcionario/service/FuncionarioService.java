@@ -7,9 +7,8 @@ import lombok.RequiredArgsConstructor;
 import com.trabalho.FolhaPag.modules.funcionario.entity.Funcionario;
 import com.trabalho.FolhaPag.modules.funcionario.dto.FuncionarioDTO;
 import com.trabalho.FolhaPag.modules.funcionario.repository.FuncionarioRepository;
-import com.trabalho.FolhaPag.modules.folha.service.calculo.CalculoINSSService;
-import com.trabalho.FolhaPag.modules.folha.service.calculo.CalculoIRRFService;
-import com.trabalho.FolhaPag.modules.folha.service.calculo.CalculoFGTSService;
+import com.trabalho.FolhaPag.modules.folha.service.calculo.factory.ImpostoCalculadorFactory;
+import com.trabalho.FolhaPag.modules.folha.service.calculo.factory.TipoImposto;
 import com.trabalho.FolhaPag.modules.folha.service.calculo.model.CalculoContext;
 
 import java.util.List;
@@ -20,9 +19,7 @@ import java.util.Optional;
 public class FuncionarioService {
 
     private final FuncionarioRepository repository;
-    private final CalculoINSSService calculoINSS;
-    private final CalculoIRRFService calculoIRRF;
-    private final CalculoFGTSService calculoFGTS;
+    private final ImpostoCalculadorFactory impostoFactory;
 
     public List<Funcionario> listarTodos() {
         return repository.findAll();
@@ -85,21 +82,24 @@ public class FuncionarioService {
     }
 
     private void aplicarCalculos(Funcionario f) {
-    CalculoContext baseContext = CalculoContext.builder()
+        CalculoContext baseContext = CalculoContext.builder()
                 .salarioBruto(f.getSalarioBruto())
                 .numeroDependentes(f.getNumeroDependentes())
                 .build();
 
-        double inss = calculoINSS.calcular(baseContext);
+        double inss = impostoFactory.obterCalculador(TipoImposto.INSS)
+                .calcular(baseContext);
 
-    CalculoContext contextComInss = CalculoContext.builder()
+        CalculoContext contextComInss = CalculoContext.builder()
                 .salarioBruto(f.getSalarioBruto())
                 .numeroDependentes(f.getNumeroDependentes())
                 .inss(inss)
                 .build();
 
-        double irrf = calculoIRRF.calcular(contextComInss);
-        double fgts = calculoFGTS.calcular(baseContext);
+        double irrf = impostoFactory.obterCalculador(TipoImposto.IRRF)
+                .calcular(contextComInss);
+        double fgts = impostoFactory.obterCalculador(TipoImposto.FGTS)
+                .calcular(baseContext);
 
         f.setInss(inss);
         f.setIrrf(irrf);

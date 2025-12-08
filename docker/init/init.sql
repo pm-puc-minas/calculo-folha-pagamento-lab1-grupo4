@@ -56,12 +56,13 @@ CREATE TABLE IF NOT EXISTS adicional (
 );
 
 -- Dados de exemplo
-INSERT INTO funcionario (nome, cpf, cargo, departamento, data_admissao, salario_bruto, inss, fgts, irrf, salario_liquido, horas_previstas, horas_trabalhadas, vale_transporte, numero_dependentes, ativo, matricula, senha, is_admin, alimentacao)
+-- Senha do admin (0001): 'admin' -> SHA-256 em Base64 = 'jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg='
+INSERT INTO funcionario (nome, cpf, cargo, departamento, data_admissao, salario_bruto, inss, fgts, irrf, salario_liquido, horas_previstas, horas_trabalhadas, vale_transporte, numero_dependentes, ativo, matricula, senha, is_admin)
 VALUES 
-('Administrador', '000.000.000-00', 'Gerente', 'Administrativo', '2020-01-01', 8000.00, 640.00, 640.00, 450.00, 6910.00, 220, 220, TRUE, 0, TRUE, '0001', '$2a$10$abcdefghijklmnopqrstuv', TRUE, TRUE),
-('João Silva', '111.111.111-11', 'Analista', 'TI', '2021-06-15', 5000.00, 400.00, 400.00, 200.00, 4400.00, 220, 220, TRUE, 1, TRUE, '0002', '$2a$10$abcdefghijklmnopqrstuv', FALSE, TRUE),
-('Maria Santos', '222.222.222-22', 'Desenvolvedora', 'TI', '2022-03-10', 6500.00, 520.00, 520.00, 300.00, 5680.00, 220, 220, TRUE, 2, TRUE, '0003', '$2a$10$abcdefghijklmnopqrstuv', FALSE, TRUE),
-('Pedro Costa', '333.333.333-33', 'Assistente', 'RH', '2023-01-20', 3500.00, 280.00, 280.00, 80.00, 3140.00, 220, 220, FALSE, 0, TRUE, '0004', '$2a$10$abcdefghijklmnopqrstuv', FALSE, FALSE)
+('Administrador', '00000000000000', 'Administrador', 'Administrativo', '2020-01-01', 0.00, 0.00, 0.00, 0.00, 0.00, 0, 0, FALSE, 0, TRUE, '0001', 'jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=', TRUE),
+('João Silva', '111.111.111-11', 'Analista', 'TI', '2021-06-15', 5000.00, 400.00, 400.00, 200.00, 4400.00, 220, 220, TRUE, 1, TRUE, '0002', 'jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=', FALSE),
+('Maria Santos', '222.222.222-22', 'Desenvolvedora', 'TI', '2022-03-10', 6500.00, 520.00, 520.00, 300.00, 5680.00, 220, 220, TRUE, 2, TRUE, '0003', 'jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=', FALSE),
+('Pedro Costa', '333.333.333-33', 'Assistente', 'RH', '2023-01-20', 3500.00, 280.00, 280.00, 80.00, 3140.00, 220, 220, FALSE, 0, TRUE, '0004', 'jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=', FALSE)
 ON CONFLICT (matricula) DO NOTHING;
 
 -- Folhas de pagamento de exemplo
@@ -72,7 +73,7 @@ SELECT
     f.salario_bruto,
     f.salario_liquido,
     (f.inss + f.irrf),
-    CASE WHEN f.vale_transporte THEN 200.00 ELSE 0 END + CASE WHEN f.alimentacao THEN 300.00 ELSE 0 END
+    CASE WHEN f.vale_transporte THEN 200.00 ELSE 0 END + 300.00
 FROM funcionario f
 WHERE f.ativo = TRUE
 ON CONFLICT DO NOTHING;
@@ -84,7 +85,7 @@ SELECT
     f.salario_bruto,
     f.salario_liquido,
     (f.inss + f.irrf),
-    CASE WHEN f.vale_transporte THEN 200.00 ELSE 0 END + CASE WHEN f.alimentacao THEN 300.00 ELSE 0 END
+    CASE WHEN f.vale_transporte THEN 200.00 ELSE 0 END + 300.00
 FROM funcionario f
 WHERE f.ativo = TRUE
 ON CONFLICT DO NOTHING;
@@ -96,7 +97,7 @@ SELECT
     f.salario_bruto,
     f.salario_liquido,
     (f.inss + f.irrf),
-    CASE WHEN f.vale_transporte THEN 200.00 ELSE 0 END + CASE WHEN f.alimentacao THEN 300.00 ELSE 0 END
+    CASE WHEN f.vale_transporte THEN 200.00 ELSE 0 END + 300.00
 FROM funcionario f
 WHERE f.ativo = TRUE
 ON CONFLICT DO NOTHING;

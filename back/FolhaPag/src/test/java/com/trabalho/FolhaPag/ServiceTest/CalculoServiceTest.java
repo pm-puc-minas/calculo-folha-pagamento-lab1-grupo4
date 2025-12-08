@@ -1,14 +1,11 @@
 package com.trabalho.FolhaPag.ServiceTest;
 
-import com.trabalho.FolhaPag.modules.folha.service.calculo.CalculoFGTSService;
-import com.trabalho.FolhaPag.modules.folha.service.calculo.CalculoINSSService;
-import com.trabalho.FolhaPag.modules.folha.service.calculo.CalculoIRRFService;
 import com.trabalho.FolhaPag.modules.folha.service.calculo.FolhaCalculoService;
+import com.trabalho.FolhaPag.modules.folha.service.calculo.factory.ImpostoCalculadorFactory;
 import com.trabalho.FolhaPag.modules.funcionario.entity.Funcionario;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,11 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CalculoServiceTest {
 
     private final FolhaCalculoService calculoService = new FolhaCalculoService(
-            Arrays.asList(
-                    new CalculoINSSService(),
-                    new CalculoIRRFService(),
-                    new CalculoFGTSService()
-            )
+            new ImpostoCalculadorFactory()
     );
 
     @Test
