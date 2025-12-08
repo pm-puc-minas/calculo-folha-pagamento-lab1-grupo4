@@ -1,0 +1,103 @@
+.pagina-dashboard {
+  padding: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  padding-top: 18px;
+}
+
+.cabecalho-dashboard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.cabecalho-dashboard h1 {
+  margin: 0 0 4px 0;
+  font-size: 24px;
+}
+
+.saudacao {
+  color: #555;
+  margin: 0;
+}
+
+.acoes-header {
+  display: flex;
+  gap: 8px;
+}
+
+.botao-header {
+  background: #2b6cb0;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.grid-atalhos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.card-atalho {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 16px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.card-atalho:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.icone-atalho {
+  background: linear-gradient(180deg,#eef2ff,#f1f5f9);
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.conteudo-atalho h3 {
+  margin: 0 0 6px 0;
+  font-size: 16px;
+}
+
+.descricao-pequena {
+  color: #666;
+  margin-top: 6px;
+  margin-bottom: 12px;
+}
+
+.tabela-salarios {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.tabela-salarios th, .tabela-salarios td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.tabela-salarios thead th {
+  background: #f9fafb;
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .cabecalho-dashboard { flex-direction: column; align-items: flex-start; gap: 8px }
+}
