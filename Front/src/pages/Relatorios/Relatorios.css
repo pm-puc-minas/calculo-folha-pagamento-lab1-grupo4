@@ -1,4 +1,30 @@
 .pagina-relatorios { padding: 22px }
-.pagina-relatorios .acoes-relatorios { display:flex; gap:10px; margin-top:12px }
-.pagina-relatorios .acoes-relatorios button { padding:8px 12px; border-radius:6px; border:1px solid #cbd5e1; background:var(--surface) }
+.pagina-relatorios .card { background: white; padding: 24px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1) }
+.pagina-relatorios .acoes-relatorios { display:flex; gap:12px; margin-top:20px }
+.pagina-relatorios .acoes-relatorios button { 
+  padding: 12px 24px; 
+  border-radius: 8px; 
+  border: none;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: white;
+}
+.pagina-relatorios .acoes-relatorios button.secondary { 
+  background: #3b82f6;
+}
+.pagina-relatorios .acoes-relatorios button.secondary:hover { 
+  background: #2563eb;
+}
+.pagina-relatorios .acoes-relatorios button:not(.secondary) { 
+  background: #10b981;
+}
+.pagina-relatorios .acoes-relatorios button:not(.secondary):hover { 
+  background: #059669;
+}
+.pagina-relatorios .acoes-relatorios button:disabled { 
+  opacity: 0.6;
+  cursor: not-allowed;
+}
 

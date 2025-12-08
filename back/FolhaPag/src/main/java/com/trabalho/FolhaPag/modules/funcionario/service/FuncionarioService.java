@@ -13,6 +13,7 @@ import com.trabalho.FolhaPag.modules.folha.service.calculo.CalculoFGTSService;
 import com.trabalho.FolhaPag.modules.folha.service.calculo.model.CalculoContext;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +26,11 @@ public class FuncionarioService {
 
     public List<Funcionario> listarTodos() {
         return repository.findAll();
+    }
+
+    public Optional<Funcionario> buscarPorId(Long id) {
+        if (id == null) return Optional.empty();
+        return repository.findById(id);
     }
 
     public Funcionario buscarPorMatricula(String matricula) {

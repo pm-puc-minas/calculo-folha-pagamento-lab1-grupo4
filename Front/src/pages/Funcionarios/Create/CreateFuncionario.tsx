@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import apiFetch from '../../../services/api'
 import { ArrowLeft, Save, AlertCircle } from 'lucide-react'
 import './CreateFuncionario.css'
 
@@ -109,7 +110,7 @@ function CreateFuncionario() {
         numeroDependentes: parseInt(formData.numeroDependentes.toString()) || 0
       }
 
-      const response = await fetch('http://localhost:8080/api/funcionarios', {
+      const response = await apiFetch('http://localhost:8080/api/funcionarios', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

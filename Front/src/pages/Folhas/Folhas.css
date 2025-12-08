@@ -1,7 +1,24 @@
 .pagina-folhas { padding: 22px }
-.pagina-folhas .lista-folhas { list-style: none; padding: 0; margin: 0 }
-.pagina-folhas .item-folha { display:flex; justify-content:space-between; align-items:center; padding:12px 14px; background:var(--surface); border-radius:8px; margin-bottom:10px }
-.pagina-folhas .item-folha .meta { color:var(--muted); font-size:13px }
-.pagina-folhas .item-folha .valor { font-weight:700 }
-.pagina-folhas .erro { color: #b91c1c }
+.pagina-folhas .card { background: white; padding: 24px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1) }
+.pagina-folhas .tabela-folhas { 
+  width: 100%; 
+  border-collapse: collapse; 
+  margin-top: 12px;
+}
+.pagina-folhas .tabela-folhas th,
+.pagina-folhas .tabela-folhas td { 
+  padding: 12px 14px; 
+  border-bottom: 1px solid #e5e7eb; 
+  text-align: left;
+}
+.pagina-folhas .tabela-folhas thead th { 
+  background: #f8fafc; 
+  font-weight: 600;
+  color: #1e293b;
+  border-bottom: 2px solid #cbd5e1;
+}
+.pagina-folhas .tabela-folhas tbody tr:hover { 
+  background: #f8fafc;
+}
+.pagina-folhas .erro { color: #b91c1c; margin-top: 12px }
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import apiFetch from '../../services/api'
 
 function DetalheFolha() {
   const { id } = useParams()
@@ -11,7 +12,7 @@ function DetalheFolha() {
     const fetchData = async () => {
       setLoading(true)
       try {
-        const res = await fetch(`http://localhost:8080/api/folhas/${id}`)
+        const res = await apiFetch(`http://localhost:8080/api/folhas/${id}`)
         if (res.ok) setFolha(await res.json())
       } catch (err) { console.error(err) }
       finally { setLoading(false) }

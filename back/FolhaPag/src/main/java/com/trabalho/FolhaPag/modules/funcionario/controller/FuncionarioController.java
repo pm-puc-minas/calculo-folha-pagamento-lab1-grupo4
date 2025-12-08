@@ -26,19 +26,17 @@ public class FuncionarioController {
     public ResponseEntity<Funcionario> buscarPorId(@PathVariable Long id,
                                                    @RequestHeader(value = "X-User-Matricula", required = false) String requesterMatricula) {
         Funcionario requester = service.buscarPorMatricula(requesterMatricula);
-        return service.listarTodos().stream()
-                .filter(f -> f.getId().equals(id))
-                .findFirst()
-                .map(f -> {
-                    if (requester == null) {
-                        return ResponseEntity.status(401).build();
+        if (requester == null) {
+            return ResponseEntity.status(401).<Funcionario>build();
+        }
+        return service.buscarPorId(id)
+                .map(target -> {
+                    if (requester.getIsAdmin() || "0001".equals(requester.getMatricula()) || requester.getId().equals(target.getId())) {
+                        return ResponseEntity.ok(target);
                     }
-                    if (requester.getIsAdmin() || "0001".equals(requester.getMatricula()) || requester.getId().equals(f.getId())) {
-                        return ResponseEntity.ok(f);
-                    }
-                    return ResponseEntity.status(403).build();
+                    return ResponseEntity.status(403).<Funcionario>build();
                 })
-                .orElse(ResponseEntity.notFound().build());
+                .orElseGet(() -> ResponseEntity.<Funcionario>notFound().build());
     }
 
     @GetMapping("/matricula/{matricula}")

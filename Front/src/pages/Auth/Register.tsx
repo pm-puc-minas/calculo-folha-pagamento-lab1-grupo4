@@ -1,6 +1,7 @@
 import { Building2, User, Lock } from "lucide-react"
 import { useState } from "react"
 import './Auth.css'
+import apiFetch from '../../services/api'
 
 function Register() {
   const [matricula, setMatricula] = useState("")
@@ -37,7 +38,7 @@ function Register() {
     setMensagem("")
 
     try {
-      const response = await fetch("http://localhost:8080/api/auth/registrar", {
+      const response = await apiFetch("http://localhost:8080/api/auth/registrar", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

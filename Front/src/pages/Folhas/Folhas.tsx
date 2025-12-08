@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import apiFetch from '../../services/api'
 import './Folhas.css'
 
 type Funcionario = {
@@ -13,6 +14,8 @@ type Folha = {
   mesReferencia: string
   salarioBruto: number
   salarioLiquido?: number
+  totalDescontos?: number
+  totalBeneficios?: number
 }
 
 function Folhas() {
@@ -24,7 +27,7 @@ function Folhas() {
     const fetchFolhas = async () => {
       setLoading(true)
       try {
-        const res = await fetch('http://localhost:8080/api/folhas')
+        const res = await apiFetch('http://localhost:8080/api/folhas')
         if (!res.ok) throw new Error('Erro ao carregar folhas')
         const data = await res.json()
         setFolhas(data)
@@ -44,18 +47,36 @@ function Folhas() {
       {error && <p className="erro">{error}</p>}
       {!loading && !error && (
         <div className="card">
-          <ul className="lista-folhas">
-            {folhas.map((f) => (
-              <li key={f.id} className="item-folha">
-                <div>
-                  <strong>{f.funcionario?.nome || '—'}</strong>
-                  <div className="meta">Matrícula: {f.funcionario?.matricula || '—'}</div>
-                </div>
-                <div className="meta">Período: {new Date(f.mesReferencia).toLocaleDateString()}</div>
-                <div className="valor">R$ { (f.salarioLiquido ?? f.salarioBruto).toFixed(2) }</div>
-              </li>
-            ))}
-          </ul>
+          {folhas.length === 0 ? (
+            <p>Nenhuma folha de pagamento cadastrada ainda.</p>
+          ) : (
+            <table className="tabela-folhas">
+              <thead>
+                <tr>
+                  <th>Funcionário</th>
+                  <th>Matrícula</th>
+                  <th>Período</th>
+                  <th>Salário Bruto</th>
+                  <th>Descontos</th>
+                  <th>Benefícios</th>
+                  <th>Salário Líquido</th>
+                </tr>
+              </thead>
+              <tbody>
+                {folhas.map((f) => (
+                  <tr key={f.id}>
+                    <td>{f.funcionario?.nome || '—'}</td>
+                    <td>{f.funcionario?.matricula || '—'}</td>
+                    <td>{new Date(f.mesReferencia).toLocaleDateString('pt-BR')}</td>
+                    <td>R$ {(f.salarioBruto ?? 0).toFixed(2)}</td>
+                    <td>R$ {(f.totalDescontos ?? 0).toFixed(2)}</td>
+                    <td>R$ {(f.totalBeneficios ?? 0).toFixed(2)}</td>
+                    <td><strong>R$ {(f.salarioLiquido ?? f.salarioBruto ?? 0).toFixed(2)}</strong></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
         </div>
       )}
     </div>

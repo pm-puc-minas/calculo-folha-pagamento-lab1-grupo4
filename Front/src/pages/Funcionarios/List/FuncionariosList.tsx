@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import apiFetch from '../../../services/api'
 import { Link } from 'react-router-dom'
 import '../../Funcionarios/Funcionarios.css'
 
@@ -21,9 +22,13 @@ function FuncionariosList() {
     const fetchData = async () => {
       setLoading(true)
       try {
-        const res = await fetch('http://localhost:8080/api/funcionarios')
-        const data = await res.json()
-        setFuncionarios(data)
+        const res = await apiFetch('http://localhost:8080/api/funcionarios')
+        if (res.ok) {
+          const data = await res.json()
+          setFuncionarios(data)
+        } else {
+          console.error('Falha ao carregar funcionários', res.status)
+        }
       } catch (err) {
         console.error(err)
       } finally { setLoading(false) }

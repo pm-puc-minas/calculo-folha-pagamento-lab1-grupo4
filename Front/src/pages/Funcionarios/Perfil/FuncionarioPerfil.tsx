@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import '../../Funcionarios/Funcionarios.css'
+import apiFetch from '../../../services/api'
 
 type Funcionario = {
   id: number
@@ -30,7 +31,7 @@ function FuncionarioPerfil() {
     const fetchData = async () => {
       setLoading(true)
       try {
-        const res = await fetch(`http://localhost:8080/api/funcionarios/${idToLoad}`)
+          const res = await apiFetch(`http://localhost:8080/api/funcionarios/${idToLoad}`)
         if (res.ok) {
           const data = await res.json()
           setFuncionario(data)
