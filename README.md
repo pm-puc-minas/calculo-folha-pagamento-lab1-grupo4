@@ -39,3 +39,42 @@ Diferentes classes implementam a interface `ICalculo` de formas diferentes:
 - `CalculoFGTSService` calcula o FGTS
 
 Todas usam o mesmo método `calcular()`, mas cada uma faz o cálculo de um jeito diferente. A classe `CalculoService` usa essa lista de cálculos sem precisar saber qual tipo específico está sendo usado.
+
+## Como Rodar o Projeto
+
+Siga as instruções abaixo para configurar e executar o ambiente de desenvolvimento via Docker.
+
+### Pré-requisitos
+* [Docker](https://www.docker.com/get-started) instalado e rodando.
+* [Git](https://git-scm.com/) instalado.
+
+### Passo a Passo
+
+1. **Clone o repositório:**
+   git clone https://github.com/pm-puc-minas/calculo-folha-pagamento-lab1-grupo4.git
+
+Acesse a pasta de configuração do Docker:
+cd calculo-folha-pagamento-lab1-grupo4/docker
+
+Rode o BackEnd + Banco de dados:
+
+docker compose up --build
+
+###  Rodando o Frontend
+
+O backend já está rodando via Docker. Agora, em um **novo terminal**, siga os passos abaixo para iniciar a interface visual:
+
+1. **Acesse a pasta do frontend:**
+   Certifique-se de estar na raiz do projeto e entre na pasta `front`:
+   cd front
+
+Instale as dependências: Execute o comando para baixar as bibliotecas necessárias:
+npm install
+
+Inicie o projeto: Rode o servidor de desenvolvimento:
+
+npm run dev
+
+Acesse a aplicação: Abra o seu navegador e vá para o seguinte endereço:
+ http://localhost:5173/login
+
