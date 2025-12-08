@@ -23,11 +23,14 @@ public class FolhaPagamentoService {
     private final FolhaCalculoService folhaCalculoService;
 
     public List<FolhaPagamento> listarTodas() {
-        // use join-fetch to ensure funcionario is populated and avoid lazy proxy issues when serializing
         try {
-            return folhaRepository.findAllWithFuncionario();
+            List<FolhaPagamento> folhas = folhaRepository.findAllWithFuncionario();
+            recalcularFolhasSeNecessario(folhas);
+            return folhas;
         } catch (Exception ex) {
-            return folhaRepository.findAll();
+            List<FolhaPagamento> folhas = folhaRepository.findAll();
+            recalcularFolhasSeNecessario(folhas);
+            return folhas;
         }
     }
 
@@ -35,7 +38,47 @@ public class FolhaPagamentoService {
         if (matricula == null) return List.of();
         var funcionario = funcionarioRepository.findByMatricula(matricula);
         if (funcionario == null) return List.of();
-        return folhaRepository.findByFuncionario(funcionario);
+        List<FolhaPagamento> folhas = folhaRepository.findByFuncionario(funcionario);
+        recalcularFolhasSeNecessario(folhas);
+        return folhas;
+    }
+
+    private void recalcularFolhasSeNecessario(List<FolhaPagamento> folhas) {
+        for (FolhaPagamento folha : folhas) {
+            if (folha.getInss() == null || folha.getInss() == 0.0) {
+                recalcularFolha(folha);
+            }
+        }
+    }
+
+    private void recalcularFolha(FolhaPagamento folha) {
+        Funcionario funcionario = folha.getFuncionario();
+        if (funcionario == null) return;
+
+        Map<String, Double> resultados = folhaCalculoService.calcularTodos(funcionario);
+
+        double inss = resultados.getOrDefault("INSS", 0.0);
+        double irrf = resultados.getOrDefault("IRRF", 0.0);
+        double fgts = resultados.getOrDefault("FGTS", 0.0);
+        double valeTransporte = 0.0;
+
+        if (Boolean.TRUE.equals(funcionario.getValeTransporte())) {
+            valeTransporte = funcionario.getSalarioBruto() * 0.06;
+        }
+
+        double totalDescontos = inss + irrf + valeTransporte;
+        double totalBeneficios = fgts;
+        double salarioLiquido = folha.getSalarioBruto() - totalDescontos + totalBeneficios;
+
+        folha.setInss(inss);
+        folha.setIrrf(irrf);
+        folha.setFgts(fgts);
+        folha.setValeTransporte(valeTransporte);
+        folha.setTotalDescontos(totalDescontos);
+        folha.setTotalBeneficios(totalBeneficios);
+        folha.setSalarioLiquido(salarioLiquido);
+
+        folhaRepository.save(folha);
     }
 
     public Optional<FolhaPagamento> buscarPorId(Long id) {
